@@ -1,71 +1,81 @@
 import React from 'react';
+import logo from './logo.svg';
 import './App.css';
 
-function App() {
-  return (
-  <div>
-    <div className='container clearfix'>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light" style={{"marginTop": "10px"}}>
-        <a className="navbar-brand" href="https://mail.google.com/mail/u/0/">
-            <img src="./images/logo.jfif" width="60" height="60"/>
-        </a>
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav mr-auto">
+class App extends React.Component {
+  constructor(props) {
+   super(props);
+   this.state={
+    firststate: 'hello world',
+    cartCount: 0
+  }
+}
 
-            </ul>
-            <form className="form-inline my-2 my-lg-0">
-                {/* <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"> */}
-                <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Cart</button>
-            </form>
-    </div>
-    </nav>
-    <h3 style={{"marginTop": "10px"}}>Products</h3>
-    <div className="row">
-        <div className="col-3">
-            <div className="card" style={{"width": "15rem", "margin": "10px"}}>
-                <div className="card-body">
-                    <div className="row">
-                        <img src="./images/pic1.jpeg" height="80" width="80"/>
-                        <h5 className="card-title" style={{"marginLeft": "10px"}}>Phones</h5>
+  componentDidMount() {
+    this.setState({
+      firstState: 'welcome to our shop'
+    })
+    }
+      
+  addCount(){
+    const newCount=this.state.cartCount +1;
+    this.setState({
+      cartCount: newCount
+    })
+  }
+
+  render() {
+    return (
+      <div>
+        <nav className="navbar navbar-expand-lg navbar-light bg-light d-flex justify-content-between">
+          <a className="navbar-brand" href="#">Navbar</a>
+
+          {this.state.firststate}
+          <button className="right" type="button">
+            Cart
+            {this.state.cartCount}
+              
+
+        
+        </button>
+        </nav>
+        <div className="container">
+          <div className="row">
+            <h2>Products</h2>
+          </div>
+          <div className="row">
+            <div className="col-md-4 col-lg-3 col-sm-12">
+              <div className="card mb-3" style={{"maxWidth": "540px", "color": "red"}}>
+                <div className="row no-gutters">
+                  <div className="col-md-4">
+                    <img src="https://via.placeholder.com/150" className="card-img" width="100%" height="100%" />
+                  </div>
+                  <div className="col-md-8">
+                    <div className="card-body">
+                      <h5 className="card-title" id="#first-title">Product title</h5>
+                      <div>
+                        <button
+                         className="btn btn-primary add-btn"
+                        onClick={() => {
+                          this.addCount()
+                        }}
+                        >
+                        add
+                        </button>
+                      </div>
                     </div>
-                    <div className="text-center" style={{"marginTop": "20px"}}>
-                        <button className="btn btn-outline-success my-2 my-sm-0 add-button" type="submit">Add to
-                            Cart</button>
-                    </div>
+                  </div>
                 </div>
+              </div>
             </div>
-        </div>
-        <div className="col-3">
-            <div className="card" style={{"width": "15rem", "margin": "10px"}}>
-                <div className="card-body">
-                    <div className="row">
-                        <img src="./images/pic2.jpeg" alt="Smiley face" height="80" width="80"/>
-                        <h5 className="card-title" style={{"marginLeft": "10px"}}>Shoes</h5>
-                    </div>
-                    <div className="text-center" style={{"marginTop": "20px"}}>
-                        <button className="btn btn-outline-success my-2 my-sm-0 add-button" type="submit">Add to
-                            Cart</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div className="col-3">
-            <div className="card" style={{"width": "15rem", "margin": "10px"}}>
-                <div className="card-body">
-                    <div className="row">
-                        <img src="./images/pic3.jpeg" alt="Smiley face" height="80" width="80"/>
-                        <h5 className="card-title" style={{"marginLeft": "10px"}}>Watches</h5>
-                    </div>
-                    <div className="text-center" style={{"marginTop": "20px"}}>
-                        <button className="btn btn-outline-success my-2 my-sm-0 add-button" type="submit">Add to Cart</button>
-                    </div>
-                </div>
-            </div>
+          </div>
+          <div className="row d-flex justify-content-end">
+            <button className="btn btn-primary" id="checkout-btn">Checkout</button>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-            );
-          }
-          
-          export default App;
+    );
+  }
+}
+
+export default App;
